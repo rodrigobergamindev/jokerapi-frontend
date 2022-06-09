@@ -6,13 +6,14 @@ import Jokes from './Jokes';
 import { ChakraProvider, theme } from '@chakra-ui/react';
 import Register from './Register';
 
+
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 
 root.render(
   <>
   <ChakraProvider theme={theme}>
-    <Register/>
+    <App/>
   </ChakraProvider>
   </>
 );

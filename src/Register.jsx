@@ -15,8 +15,12 @@ import {
   } from '@chakra-ui/react';
 import axios from 'axios'
 import {Formik, Field, Form} from 'formik'
+import { Link, useNavigate } from "react-router-dom";
+
 
 export default function Register() {
+
+    const navigate = useNavigate()
     
     function validate(value) {
         let error
@@ -40,15 +44,15 @@ export default function Register() {
        setTimeout(async () => {
         try {
             const sendValues = await axios.post('https://jokerapi-usjt.herokuapp.com/user', {
-            username,
-            password
-        },
-        {
-            withCredentials: true
-        })
+                username,
+                password
+            },
+            {
+                withCredentials: true
+            })
     
-        if(sendValues.data.token){
-           //redirect
+        if(sendValues.data.username){
+           navigate(`profile/${sendValues.data.username}`)
         }
 
        
