@@ -16,9 +16,11 @@ import {
 import axios from 'axios'
 import {Formik, Field, Form} from 'formik'
 import { Link, useNavigate } from "react-router-dom";
-
+import { useCookies } from 'react-cookie';
 
 export default function Register() {
+
+    const [cookies, setCookie] = useCookies(['token']);
 
     const navigate = useNavigate()
     
@@ -51,7 +53,8 @@ export default function Register() {
                 withCredentials: true
             })
     
-        if(sendValues.data.username){
+        if(sendValues.data.token){
+            setCookie('token', sendValues.data.token)
            navigate(`profile/${sendValues.data.username}`)
         }
 
