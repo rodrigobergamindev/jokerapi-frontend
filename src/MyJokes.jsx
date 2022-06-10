@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import {
-    Box,
     Text,
     VStack,
     Grid,
-    theme,
     HStack,
     Heading,
+    Button,
   } from '@chakra-ui/react';
 import axios from 'axios'
 import {useParams} from 'react-router-dom'
@@ -41,7 +40,18 @@ export default function MyJokes() {
             fetchData()
         },[])
 
-  
+        
+        async function handleDelete(joke){
+          
+            const response = await axios.delete(`http://localhost:8080/${slug}/${joke.id}`, {
+                withCredentials: true
+            })
+
+            if(response.status === 204){
+                const newArray = jokes.filter(item => item.id !== joke.id)
+                setJokes([...newArray])
+            }
+        }
 
   return (
 
@@ -66,15 +76,18 @@ export default function MyJokes() {
                   <Grid maxWidth="1200px" width="100%" templateColumns='repeat(4, 1fr)' justifyItems="center" gap={6}>
                         {
                             jokes.map(joke => (
-                                <VStack key={joke.id} boxShadow="md" w="350px" h="250px" backgroundColor="tomato" padding="10px">
+                                <VStack key={joke.id} boxShadow="md" w="350px" h="250px" backgroundColor="gray.300" padding="10px">
                                     <HStack alignSelf="flex-start" justifyContent="space-between" borderBottom="2px" borderColor="whiteAlpha.900" width="100%" paddingBottom="2">
                                     <Text color="white" fontWeight="bold">{joke.category}</Text>
                                     <Text fontWeight="bold" color="white">{new Date(joke.createdAt).toLocaleDateString('pt-BR',{
                                         dateStyle: "short"
                                     })}</Text>
+                                    <Button size="sm" colorScheme="red" onClick={() => handleDelete(joke)}> 
+                                        X
+                                    </Button>
                                     </HStack>
                                     <Text fontSize="md" fontWeight="bold">{joke.title}</Text>
-                                    <Text textAlign="justify" overflowY="scroll" css={{
+                                    <Text textAlign="justify" maxW="100%" height="100%" overflowY="scroll" css={{
                                         '&::-webkit-scrollbar': {
                                             width: '4px',
                                           },

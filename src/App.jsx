@@ -1,14 +1,7 @@
 import React from 'react';
-import {
-  Box,
-  Text,
-  VStack,
-  Code,
-  Grid,
-  HStack,
-} from '@chakra-ui/react';
 
-import { Logo } from './Logo';
+
+
 
 import {
   BrowserRouter as Router,
@@ -20,6 +13,7 @@ import {
 import MyJokes from './MyJokes';
 import Home from './Home';
 import Register from './Register';
+import Create from './Create';
 
 function App() {
   return (
@@ -30,6 +24,7 @@ function App() {
               <Route path='/' element={<Home/>}/>
               <Route path='register' element={<Register/>}/>
               <Route path='profile/:slug' element={<MyJokes/>}/>
+              <Route path='create/:slug' element={<Create/>}/>
     </Routes>
  
 
