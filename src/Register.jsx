@@ -28,7 +28,7 @@ export default function Register() {
         
         
     setTimeout(async () => {
-      if(session !== {}){
+      if(session){
        const user = jwt_decode(session)
        navigate(`/profile/${user.user}`)
       }

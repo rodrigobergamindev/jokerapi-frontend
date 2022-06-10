@@ -16,7 +16,7 @@ export function getSessionCookie(){
   const sessionCookie = cookies.get('token')
   
   if (sessionCookie === undefined) {
-    return {};
+    return;
   } else {
     return sessionCookie;
   }

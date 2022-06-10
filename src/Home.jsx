@@ -1,9 +1,17 @@
 import { Grid, HStack, Text, VStack } from '@chakra-ui/react'
-import React from 'react'
+import React, {useState} from 'react'
 import { Logo } from './Logo'
 import {Link} from 'react-router-dom'
+import { SessionContext, getSessionCookie, setSessionCookie } from "./contexts/useSession"
+
+import jwt_decode from "jwt-decode";
 
 export default function Home() {
+  const [session, setSession] = useState(getSessionCookie());
+  
+  const username = session ? jwt_decode(session) : ''
+  console.log(session)
+
   return (
     <VStack textAlign="center" fontSize="xl">
       
@@ -19,7 +27,13 @@ export default function Home() {
               Database
             </Text>
             <Text fontSize="2xl" fontWeight="normal">
-              Contribute
+              {
+                !!session ? (
+                  <Link to={`/profile/${username.user}`}>Contribute</Link>
+                ) : (
+                  <Link to={`/register`}>Contribute</Link>
+                )
+              }
             </Text>
             </HStack>
 
