@@ -1,6 +1,7 @@
 import { Grid, HStack, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
 import { Logo } from './Logo'
+import {Link} from 'react-router-dom'
 
 export default function Home() {
   return (

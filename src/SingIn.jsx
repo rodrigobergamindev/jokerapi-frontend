@@ -19,21 +19,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { SessionContext, getSessionCookie, setSessionCookie } from "./contexts/useSession"
 import jwt_decode from "jwt-decode";
 
+export default function SignIn() {
 
-export default function Register() {
+    const [session, setSession] = useState(getSessionCookie());
 
-  const [session, setSession] = useState(getSessionCookie());
-
-  useEffect(() => {
-        
-        
-    setTimeout(async () => {
-      if(session !== {}){
-       const user = jwt_decode(session)
-       navigate(`/profile/${user.user}`)
-      }
-    }, 100)
-},[session])
 
     const navigate = useNavigate()
     
@@ -45,11 +34,22 @@ export default function Register() {
         return error
       }
 
+      useEffect(() => {
+        
+        
+        setTimeout(async () => {
+          if(session !== {}){
+           const user = jwt_decode(session)
+           navigate(`/profile/${user.user}`)
+          }
+        }, 100)
+    },[session])
+
   return (
 
       <VStack width="100%" height="100vh" alignItems="center" justifyContent="center" spacing={8}>
        
-        <Heading>Register</Heading>
+        <Heading>Sign In</Heading>
           
         <VStack>
         <Formik
@@ -59,7 +59,7 @@ export default function Register() {
        setTimeout(async () => {
      
         try {
-            const sendValues = await axios.post('http://localhost:8080/user', {
+            const sendValues = await axios.post('http://localhost:8080/auth', {
                 username,
                 password
             },
@@ -68,19 +68,18 @@ export default function Register() {
             })
     
         if(sendValues.data.token){
-          setSessionCookie(sendValues.data.token)
-          if(getSessionCookie()){
-            navigate(`/profile/${sendValues.data.username}`)
-          }
-           
+            setSessionCookie(sendValues.data.token)
+
+            console.log(session)
+           //navigate(`/profile/${sendValues.data.username}`)
         }
 
        
         actions.setSubmitting(false)
         } catch (error) {
             console.log(error)
-            if(error.response.status === 409){
-                alert('Usuário já existe')
+            if(error.response.status === 400){
+                alert('Dados inválidos')
             }
             actions.setSubmitting(false)
         }
@@ -126,6 +125,6 @@ export default function Register() {
         </VStack>
 
       </VStack>
-   
+
   )
 }
