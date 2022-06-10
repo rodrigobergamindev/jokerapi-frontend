@@ -55,7 +55,7 @@ export default function Register() {
     
         if(sendValues.data.token){
             setCookie('token', sendValues.data.token)
-           navigate(`profile/${sendValues.data.username}`)
+           navigate(`/profile/${sendValues.data.username}`)
         }
 
        

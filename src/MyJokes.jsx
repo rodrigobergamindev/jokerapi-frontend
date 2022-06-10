@@ -8,12 +8,12 @@ import {
     Button,
   } from '@chakra-ui/react';
 import axios from 'axios'
-import {useParams} from 'react-router-dom'
+import {useParams, useNavigate} from 'react-router-dom'
 
 export default function MyJokes() {
     const [jokes, setJokes] = useState([])
-    const [errorMessage, setErrorMessage] = useState(false)
     let {slug} = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         
@@ -21,7 +21,7 @@ export default function MyJokes() {
             async function fetchData() {
                 try {
               
-                    const response = await axios.get(`https://jokerapi-usjt.herokuapp.com/user/${slug}/jokes`, {
+                    const response = await axios.get(`http://localhost:8080/user/${slug}/jokes`, {
                        withCredentials: true
                     })
     
@@ -30,7 +30,7 @@ export default function MyJokes() {
             } catch (error) {
                  
                   if(error.response.status === 401){
-                      setErrorMessage(true)
+                      navigate('/')
                   }
                 
                 
@@ -53,18 +53,37 @@ export default function MyJokes() {
             }
         }
 
+        async function handleRemoveAccount(username){
+            console.log(username)
+            const response = await axios.delete(`https://jokerapi-usjt.herokuapp.com/user/${username}`, {
+                withCredentials: true
+            })
+
+            if(response.status === 204){
+                alert('Dados deletados')
+
+                setTimeout(() => navigate('/'), 1000)
+            }
+        }
+
   return (
 
       <>
       
-      
-           {!errorMessage ? (
-                <VStack width="100%" height="100%" spacing={8}>
+        
+                <VStack width="100%" 
+                height="100vh" 
+                justifyContent="space-between" 
+                spacing={8} 
+                backgroundColor="gray.300" 
+                
+                >
+                <VStack width="100%" height="100%">
                 <HStack 
                 width="100%" 
                 backgroundColor="blue.700"  
                 alignItems="center" 
-                justifyContent="center" 
+                justifyContent="center"
                 textAlign="center" 
                 borderBottom="1px" 
                 borderColor="gray.500"
@@ -72,11 +91,13 @@ export default function MyJokes() {
                 >
                     <Text fontSize="3xl" fontWeight="black" color="whiteAlpha.900">Joker API</Text>
                 </HStack>
+
+                <VStack spacing={20}>
                 <Heading>{`Jokes for ${slug}`}</Heading>
                   <Grid maxWidth="1200px" width="100%" templateColumns='repeat(4, 1fr)' justifyItems="center" gap={6}>
                         {
                             jokes.map(joke => (
-                                <VStack key={joke.id} boxShadow="md" w="350px" h="250px" backgroundColor="gray.300" padding="10px">
+                                <VStack key={joke.id} boxShadow="md" w="350px" h="250px" backgroundColor="gray.400" padding="10px">
                                     <HStack alignSelf="flex-start" justifyContent="space-between" borderBottom="2px" borderColor="whiteAlpha.900" width="100%" paddingBottom="2">
                                     <Text color="white" fontWeight="bold">{joke.category}</Text>
                                     <Text fontWeight="bold" color="white">{new Date(joke.createdAt).toLocaleDateString('pt-BR',{
@@ -107,10 +128,34 @@ export default function MyJokes() {
                         }
                
                   </Grid>
+                </VStack>
+                
+                  </VStack>
+
+                  <HStack
+                  position="absolute" 
+                  bottom="20px" 
+                  right="20px" 
+                  >
+                    <Button 
+                  colorScheme="blue" 
+                  size="lg" 
+                  borderRadius="100px" 
+                  fontSize="xl"
+                  onClick={() => navigate(`/create/${slug}`)}
+                  >Contribua</Button>
+
+                    <Button 
+                  colorScheme="red" 
+                  size="lg" 
+                  borderRadius="100px" 
+                  fontSize="xl"
+                  onClick={() => handleRemoveAccount(slug)}
+                  >Excluir conta</Button>  
+                  </HStack>
+                  
               </VStack>
-           ) : (
-               <Text>Ocorreu um erro</Text>
-           )}
+
           
       
       </>

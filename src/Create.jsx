@@ -70,7 +70,7 @@ export default function Create() {
                            
                            if(sendValues.status === 201){
                             actions.setSubmitting(false)
-                            navigate(`profile/${slug}`)
+                            navigate(`/profile/${slug}`)
                            }
                             } catch (error) {
                                 console.log(error)
