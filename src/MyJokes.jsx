@@ -43,7 +43,7 @@ export default function MyJokes() {
         
         async function handleDelete(joke){
           
-            const response = await axios.delete(`http://localhost:8080/${slug}/${joke.id}`, {
+            const response = await axios.delete(`https://jokerapi-usjt.herokuapp.com/${slug}/${joke.id}`, {
                 withCredentials: true
             })
 

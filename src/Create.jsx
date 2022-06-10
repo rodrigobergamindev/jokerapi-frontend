@@ -58,7 +58,7 @@ export default function Create() {
                             const {category, title, description} = values
                            setTimeout(async () => {
                             try {
-                                const sendValues = await axios.post(`http://localhost:8080/${slug}`, {
+                                const sendValues = await axios.post(`https://jokerapi-usjt.herokuapp.com/${slug}`, {
                                     category,
                                     title,
                                     description
