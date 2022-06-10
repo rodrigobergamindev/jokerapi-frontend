@@ -16,7 +16,7 @@ export default function Home() {
 
             <HStack spacing={8}>
             <Text color="blue.500" fontSize="2xl" fontWeight="semibold">
-              See all jokes
+              Database
             </Text>
             <Text fontSize="2xl" fontWeight="normal">
               Contribute

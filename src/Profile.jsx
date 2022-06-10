@@ -74,7 +74,7 @@ export default function Profile() {
             )
             
             if(response.status === 200) {
-                
+
                 navigate('/')
             }
         }
