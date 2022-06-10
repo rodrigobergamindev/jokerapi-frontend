@@ -72,7 +72,7 @@ export default function SignIn() {
 
             if(getSessionCookie()){
               const username = jwt_decode(sendValues.data.token)
-              navigate(`/profile/${username}`)
+              navigate(`/profile/${username.user}`)
             }
   
         }
