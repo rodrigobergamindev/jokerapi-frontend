@@ -10,7 +10,7 @@ import {
 import axios from 'axios'
 import {useParams, useNavigate} from 'react-router-dom'
 
-export default function MyJokes() {
+export default function Profile() {
     const [jokes, setJokes] = useState([])
     let {slug} = useParams()
     const navigate = useNavigate()
@@ -66,6 +66,19 @@ export default function MyJokes() {
             }
         }
 
+        async function handleLogout(){
+            
+            const response = await axios.post(`http://localhost:8080/logout`, {}, {
+                withCredentials: true
+            }
+            )
+            
+            if(response.status === 200) {
+                
+                navigate('/')
+            }
+        }
+
   return (
 
       <>
@@ -79,18 +92,29 @@ export default function MyJokes() {
                 
                 >
                 <VStack width="100%" height="100%">
-                <HStack 
-                width="100%" 
-                backgroundColor="blue.700"  
-                alignItems="center" 
-                justifyContent="center"
-                textAlign="center" 
-                borderBottom="1px" 
-                borderColor="gray.500"
-                padding="10px"
-                >
+                    <HStack 
+                    backgroundColor="blue.700" 
+                    width="100%" 
+                    padding="10px"
+                    borderColor="gray.400" 
+                    borderBottom="1px"
+                    >
+                    <HStack 
+                        flex="1"
+                        backgroundColor="blue.700"  
+                        alignItems="center" 
+                        justifyContent="center"
+                        textAlign="center" 
+                        
+                    >
                     <Text fontSize="3xl" fontWeight="black" color="whiteAlpha.900">Joker API</Text>
+                   
                 </HStack>
+                    <Button size="md"
+                    onClick={() => handleLogout()}
+                    >Sign Out</Button>
+                    </HStack>
+                
 
                 <VStack spacing={20}>
                 <Heading>{`Jokes for ${slug}`}</Heading>
