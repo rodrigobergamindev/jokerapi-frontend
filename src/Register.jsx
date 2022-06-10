@@ -44,8 +44,9 @@ export default function Register() {
       onSubmit={(values, actions) => {
         const {username, password} = values
        setTimeout(async () => {
+     
         try {
-            const sendValues = await axios.post('https://jokerapi-usjt.herokuapp.com/user', {
+            const sendValues = await axios.post('http://localhost:8080/user', {
                 username,
                 password
             },
