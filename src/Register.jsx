@@ -69,8 +69,9 @@ export default function Register() {
     
         if(sendValues.data.token){
           setSessionCookie(sendValues.data.token)
+
           if(getSessionCookie()){
-            navigate(`/profile/${sendValues.data.username}`)
+            navigate(`/profile/${username}`)
           }
            
         }

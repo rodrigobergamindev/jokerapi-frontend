@@ -70,8 +70,11 @@ export default function SignIn() {
         if(sendValues.data.token){
             setSessionCookie(sendValues.data.token)
 
-            console.log(session)
-           //navigate(`/profile/${sendValues.data.username}`)
+            if(getSessionCookie()){
+              const username = jwt_decode(sendValues.data.token)
+              navigate(`/profile/${username}`)
+            }
+  
         }
 
        

@@ -54,7 +54,7 @@ export default function MyJokes() {
         }
 
         async function handleRemoveAccount(username){
-            console.log(username)
+            
             const response = await axios.delete(`http://localhost:8080/user/${username}`, {
                 withCredentials: true
             })
