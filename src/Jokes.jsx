@@ -46,7 +46,7 @@ export default function Jokes() {
             </Link>
         </HStack>
         <Heading>All Jokes</Heading>
-          <Grid maxWidth="1200px" width="100%" templateColumns='repeat(4, 1fr)' justifyItems="center" gap={6}>
+          <Grid maxWidth="1200px" width="100%" gridAutoFlow="column" templateColumns='repeat(4, 1fr)' justifyItems="center" alignContent="center" gap={6}>
           {
                             jokes.map(joke => (
                                 <VStack key={joke.id} boxShadow="md" w="350px" h="250px" backgroundColor="gray.400" padding="10px">
