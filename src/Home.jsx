@@ -23,9 +23,11 @@ export default function Home() {
             <Logo h="40vmin" pointerEvents="none" />
 
             <HStack spacing={8}>
+            <Link to="/jokes">
             <Text color="blue.500" fontSize="2xl" fontWeight="semibold">
               Database
             </Text>
+            </Link>
             <Text fontSize="2xl" fontWeight="normal">
               {
                 !!session ? (

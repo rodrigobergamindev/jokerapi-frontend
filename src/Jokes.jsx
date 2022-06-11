@@ -16,7 +16,7 @@ export default function Jokes() {
 
     useEffect(() => {
         async function fetchData() {
-            const data = await axios.get('https://jokerapi-usjt.herokuapp.com/', {
+            const data = await axios.get('https://jokerapi-usjt.herokuapp.com/jokes', {
                 method: 'get'
             })
             setJokes(data.data)

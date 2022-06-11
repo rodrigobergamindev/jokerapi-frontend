@@ -17,6 +17,7 @@ import Create from './Create';
 import SignIn from './SingIn';
 
 import { SessionContext, getSessionCookie, setSessionCookie } from "./contexts/useSession"
+import Jokes from './Jokes';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
               <Route path='profile/:slug' element={<Profile/>}/>
               <Route path='create/:slug' element={<Create/>}/>
               <Route path='signin' element={<SignIn/>}/>
+              <Route path='jokes' element={<Jokes/>}/>
     </Routes>
     </SessionContext.Provider>
 
