@@ -9,6 +9,7 @@ import {
     Heading,
   } from '@chakra-ui/react';
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 
 
 export default function Jokes() {
@@ -40,7 +41,9 @@ export default function Jokes() {
         borderColor="gray.500"
         padding="10px"
         >
+            <Link to="/">
             <Text fontSize="3xl" fontWeight="black" color="whiteAlpha.900">Joker API</Text>
+            </Link>
         </HStack>
         <Heading>All Jokes</Heading>
           <Grid maxWidth="1200px" width="100%" templateColumns='repeat(4, 1fr)' justifyItems="center" gap={6}>
