@@ -1,4 +1,4 @@
-import { Grid, HStack, Text, VStack } from '@chakra-ui/react'
+import { Grid, HStack, Text, VStack, Link as ChakraLink } from '@chakra-ui/react'
 import React, {useState} from 'react'
 import { Logo } from './Logo'
 import {Link} from 'react-router-dom'
@@ -36,7 +36,8 @@ export default function Home() {
               }
             </Text>
             </HStack>
-
+            
+            <ChakraLink href='https://jokerapi-usjt.herokuapp.com/api-docs'><Text fontSize="md" _hover={{color:"blue.500", transition:"0.2s"}}>Documentation 📄</Text></ChakraLink>
           </VStack>
         </Grid>
       </VStack>
