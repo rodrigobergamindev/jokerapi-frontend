@@ -31,7 +31,7 @@ export default function Home() {
                 !!session ? (
                   <Link to={`/profile/${username.user}`}>Contribute</Link>
                 ) : (
-                  <Link to={`/register`}>Contribute</Link>
+                  <Link to={`/signin`}>Contribute</Link>
                 )
               }
             </Text>

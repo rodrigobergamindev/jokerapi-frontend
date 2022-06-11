@@ -51,7 +51,7 @@ export default function SignIn() {
        
         <Heading>Sign In</Heading>
           
-        <VStack>
+        <VStack spacing={8}>
         <Formik
       initialValues={{ username: '', password: '' }}
       onSubmit={(values, actions) => {
@@ -113,18 +113,26 @@ export default function SignIn() {
             )}
           </Field>
 
-
+          
           <Button
             mt={4}
             colorScheme='blue'
             isLoading={props.isSubmitting}
             type='submit'
           >
-            Sign Up
+            Sign In
           </Button>
+        
+          
         </Form>
       )}
     </Formik>
+
+       <Link to="/register">
+        <Text color="blue.400">
+        You're new? create an account
+        </Text>
+       </Link>
         </VStack>
 
       </VStack>

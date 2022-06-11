@@ -31,7 +31,7 @@ function App() {
               <Route path='register' element={<Register/>}/>
               <Route path='profile/:slug' element={<Profile/>}/>
               <Route path='create/:slug' element={<Create/>}/>
-              <Route path='/signin' element={<SignIn/>}/>
+              <Route path='signin' element={<SignIn/>}/>
     </Routes>
     </SessionContext.Provider>
 
