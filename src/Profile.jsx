@@ -10,6 +10,7 @@ import {
   } from '@chakra-ui/react';
 import axios from 'axios'
 import {useParams, useNavigate, Link} from 'react-router-dom'
+import { logout } from './contexts/useSession';
 
 export default function Profile() {
     const [jokes, setJokes] = useState([])
@@ -61,6 +62,7 @@ export default function Profile() {
             })
 
             if(response.status === 204){
+                logout()
                 alert('Dados deletados')
 
                 setTimeout(() => navigate('/'), 1000)
@@ -75,7 +77,7 @@ export default function Profile() {
             )
             
             if(response.status === 200) {
-
+                logout()
                 navigate('/')
             }
         }

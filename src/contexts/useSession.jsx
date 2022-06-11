@@ -22,4 +22,9 @@ export function getSessionCookie(){
   }
 };
 
+export function logout(){
+  
+  return cookies.remove('token')
+}
+
 export const SessionContext = createContext(getSessionCookie());
