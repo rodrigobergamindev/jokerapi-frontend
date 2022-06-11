@@ -88,7 +88,6 @@ export default function Profile() {
       
         
                 <VStack width="100%" 
-                height="100vh" 
                 justifyContent="space-between" 
                 spacing={8} 
                 backgroundColor="gray.300" 
