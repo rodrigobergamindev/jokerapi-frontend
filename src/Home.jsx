@@ -20,7 +20,7 @@ export default function Home() {
 
           <Text fontSize="6xl" fontWeight="black">Joker API</Text>
 
-            <Logo h="40vmin" pointerEvents="none" />
+            <Logo h="40vmin" pointerEvents="none" /> 
 
             <HStack spacing={8}>
             <Link to="/jokes">
