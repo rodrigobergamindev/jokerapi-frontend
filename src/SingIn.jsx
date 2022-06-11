@@ -59,7 +59,7 @@ export default function SignIn() {
        setTimeout(async () => {
      
         try {
-            const sendValues = await axios.post('http://localhost:8080/auth', {
+            const sendValues = await axios.post('https://jokerapi-usjt.herokuapp.com/auth', {
                 username,
                 password
             },

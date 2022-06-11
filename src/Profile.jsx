@@ -6,9 +6,10 @@ import {
     HStack,
     Heading,
     Button,
+    Box,
   } from '@chakra-ui/react';
 import axios from 'axios'
-import {useParams, useNavigate} from 'react-router-dom'
+import {useParams, useNavigate, Link} from 'react-router-dom'
 
 export default function Profile() {
     const [jokes, setJokes] = useState([])
@@ -21,7 +22,7 @@ export default function Profile() {
             async function fetchData() {
                 try {
               
-                    const response = await axios.get(`http://localhost:8080/user/${slug}/jokes`, {
+                    const response = await axios.get(`https://jokerapi-usjt.herokuapp.com/user/${slug}/jokes`, {
                        withCredentials: true
                     })
     
@@ -43,7 +44,7 @@ export default function Profile() {
         
         async function handleDelete(joke){
           
-            const response = await axios.delete(`http://localhost:8080/${slug}/${joke.id}`, {
+            const response = await axios.delete(`https://jokerapi-usjt.herokuapp.com/jokes/${slug}/${joke.id}`, {
                 withCredentials: true
             })
 
@@ -55,7 +56,7 @@ export default function Profile() {
 
         async function handleRemoveAccount(username){
             
-            const response = await axios.delete(`http://localhost:8080/user/${username}`, {
+            const response = await axios.delete(`https://jokerapi-usjt.herokuapp.com/user/${username}`, {
                 withCredentials: true
             })
 
@@ -68,7 +69,7 @@ export default function Profile() {
 
         async function handleLogout(){
             
-            const response = await axios.post(`http://localhost:8080/logout`, {}, {
+            const response = await axios.post(`https://jokerapi-usjt.herokuapp.com/logout`, {}, {
                 withCredentials: true
             }
             )
@@ -98,26 +99,26 @@ export default function Profile() {
                     padding="10px"
                     borderColor="gray.400" 
                     borderBottom="1px"
+                    alignItems="center" 
+                    justifyContent="center"
+                    textAlign="center" 
                     >
-                    <HStack 
-                        flex="1"
-                        backgroundColor="blue.700"  
-                        alignItems="center" 
-                        justifyContent="center"
-                        textAlign="center" 
-                        
-                    >
-                    <Text fontSize="3xl" fontWeight="black" color="whiteAlpha.900">Joker API</Text>
+                 
+                    <Box flex="1">
+                        <Link to="/">
+                        <Text fontSize="3xl" fontWeight="black" color="whiteAlpha.900" flex="1">Joker API</Text>
+                        </Link>
+                    </Box>
                    
-                </HStack>
+             
                     <Button size="md"
                     onClick={() => handleLogout()}
                     >Sign Out</Button>
                     </HStack>
                 
 
-                <VStack spacing={20}>
-                <Heading>{`Jokes for ${slug}`}</Heading>
+                <VStack spacing={10}>
+                <Heading paddingTop="20px" fontSize="lg" alignSelf="flex-start">{`Hello ${slug}, these are your jokes`}</Heading>
                   <Grid maxWidth="1200px" width="100%" templateColumns='repeat(4, 1fr)' justifyItems="center" gap={6}>
                         {
                             jokes.map(joke => (

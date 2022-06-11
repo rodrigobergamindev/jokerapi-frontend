@@ -59,7 +59,7 @@ export default function Register() {
        setTimeout(async () => {
      
         try {
-            const sendValues = await axios.post('http://localhost:8080/user', {
+            const sendValues = await axios.post('https://jokerapi-usjt.herokuapp.com/user', {
                 username,
                 password
             },
